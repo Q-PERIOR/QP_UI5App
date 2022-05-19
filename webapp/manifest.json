@@ -1,0 +1,126 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "TechInnovation.TechInnovation",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"TechnologyInnovation": {
+				"uri": "model/Object.json",
+				"type": "JSON",
+				"settings": {
+					"localUri": "localService/TechnologyInnovation/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "TechInnovation.TechInnovation.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "fcl"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.layout": {},
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "TechInnovation.TechInnovation.i18n.i18n"
+				}
+			},
+			"customJsonModel": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/Object.json"
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "TechnologyInnovation",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"viewPath": "TechInnovation.TechInnovation.view",
+				"controlId": "fcl",
+				"transition": "slide",
+				"async": true,
+				"routerClass": "sap.f.routing.Router",
+				"viewType": "XML"
+			},
+			"routes": [{
+					"pattern": ":layout:",
+					"name": "Master",
+					"target": [
+						"Master",
+						"Detail"
+					]
+				}
+
+			],
+			"targets": {
+				"Master": {
+					"viewType": "XML",
+					"viewName": "Master",
+					"controlAggregation": "beginColumnPages"
+				},
+				"Detail": {
+					"viewType": "XML",
+					"viewName": "Detail",
+					"controlAggregation": "midColumnPages"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

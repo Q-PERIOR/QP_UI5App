@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<Dialog id="Add" title="Add Form">
+		<f:SimpleForm id="SimpleFormChange354" layout="ResponsiveGridLayout" title="Add Form" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<f:content>
+				<Label id="lblId" text="Referenzenauszug Id"/>
+				<Input id="inpId" value=""/>
+				<Label id="lblText" text="Referenzenauszug Text"/>
+				<Input id="inpText" value=""/>
+			</f:content>
+		</f:SimpleForm>
+		<Bar>
+			<contentRight>
+				<Button id="save" text="Save" type="Emphasized"  press="handleSavePress"/>
+				<Button id="cancel" text="Cancel"  press="handleCancelPress"/>
+			</contentRight>
+		</Bar>
+	</Dialog>
+</core:FragmentDefinition>

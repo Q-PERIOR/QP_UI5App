@@ -1,0 +1,48 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:f="sap.ui.layout.form" controllerName="TechInnovation.TechInnovation.controller.Detail">
+	<Page>
+		<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding" backgroundDesign="Transparent">
+			<items>
+				<IconTabFilter icon="sap-icon://customer" text="Referenzenauszug Technology und Innovation" key="info">
+					<OverflowToolbar class="sapFDynamicPageAlignContent">
+						<ToolbarSpacer/>
+						<SearchField liveChange="onSearch" width="17.5rem"/>
+						<OverflowToolbarButton icon="sap-icon://add" text="Add" type="Transparent" press="onAdd"/>
+						<OverflowToolbarButton icon="sap-icon://sort" text="Sort" type="Transparent" press="onSort"/>
+					</OverflowToolbar>
+					<f:SimpleForm id="updateForm" layout="ResponsiveGridLayout" title="Update Form" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+						labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+						singleContainerFullSize="false" visible="false">
+						<f:content>
+							<Label text="Id"/>
+							<Input value="" id="refIdUpdate" editable="false"/>
+							<Label text="Referenzenauszug"/>
+							<Input value="" id="refUpdate"/>
+							<OverflowToolbarButton icon="sap-icon://accept" text="Save" type="Transparent" press="onSaveUpdate"/>
+							<OverflowToolbarButton icon="sap-icon://decline" text="Cancel" type="Transparent" press="onCancelUpdate"/>
+						</f:content>
+					</f:SimpleForm>
+					<List id="listReferenzenauszug" headerText="Referenzenauszug" enableBusyIndicator="true" items="{customJsonModel>/Referenzenauszug}"
+						backgroundDesign="Transparent" mode="Delete" delete="handleDelete">
+						<StandardListItem type="Detail" detailPress="onShowForm" title="{customJsonModel>ReferenzenauszugText}"/>
+					</List>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://developer-settings" key="attachments" text="Beschleuniger">
+					<List headerText="Beschleuniger" items="{customJsonModel>/Beschleuniger}" backgroundDesign="Transparent">
+						<StandardListItem title="{customJsonModel>BeschleunigerText}"/>
+					</List>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://employee" key="notes" text="S/4HANA Assets">
+					<List headerText="Assets" items="{customJsonModel>/Assets}" backgroundDesign="Transparent">
+						<StandardListItem title="{customJsonModel>AssetsText}"/>
+					</List>
+				</IconTabFilter>
+				<IconTabFilter icon="sap-icon://laptop" key="people" text="Technologien und Know-How">
+					<List headerText="Technologien" items="{customJsonModel>/Technologien}" backgroundDesign="Transparent">
+						<StandardListItem title="{customJsonModel>TechnologienText}"/>
+					</List>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</Page>
+</mvc:View>

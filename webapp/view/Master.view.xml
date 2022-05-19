@@ -1,0 +1,18 @@
+<mvc:View controllerName="TechInnovation.TechInnovation.controller.Master" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.f" xmlns:core="sap.ui.core">
+	<f:DynamicPage id="dynamicPageId">
+		<f:content>
+			<List items="{customJsonModel>/ServicePortofolio}" headerText="Service Portofolio">
+				<CustomListItem>
+					<Panel headerText="{customJsonModel>ServiceName}" class="sapUiResponsiveMargin" width="auto" expandable="true">
+						<content>
+							<List id="serviceListId" items="{customJsonModel>Details}">
+								<StandardListItem title="{customJsonModel>Detail}"/>
+							</List>
+						</content>
+					</Panel>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

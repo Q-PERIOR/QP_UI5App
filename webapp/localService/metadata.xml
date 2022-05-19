@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:edmx4="http://docs.oasis-open.org/odata/ns/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+    <edmx4:Reference Uri="vocabularies/com.sap.cloud.server.odata.sql.v1.xml">
+        <edmx4:Include Namespace="com.sap.cloud.server.odata.sql.v1" Alias="SQL"/>
+    </edmx4:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="TechnologyInnovation" Alias="TechnologyInnovation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Assets">
+                <Key>
+                    <PropertyRef Name="AssetsID"/>
+                </Key>
+                <Property Name="AssetsElements" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="AssetsID" Type="Edm.Int64" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Beschleuniger">
+                <Key>
+                    <PropertyRef Name="BeschleunigerID"/>
+                </Key>
+                <Property Name="BeschleunigerElements" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="BeschleunigerID" Type="Edm.Int64" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Referenzenauszug">
+                <Key>
+                    <PropertyRef Name="ReferenzenauszugID"/>
+                </Key>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="ReferenzenauszugID" Type="Edm.Int64" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ServiceDetails">
+                <Key>
+                    <PropertyRef Name="ServiceDetailsID"/>
+                </Key>
+                <Property Name="Details" Type="Edm.String" Nullable="false"/>
+                <Property Name="ServiceDetailsID" Type="Edm.Int64" Nullable="false"/>
+                <NavigationProperty Name="ServicePortofolio" Relationship="TechnologyInnovation.ServiceDetails_to_ServicePortofolio" FromRole="ServiceDetailsDependent" ToRole="ServicePortofolioPrincipal"/>
+            </EntityType>
+            <EntityType Name="ServicePortofolio">
+                <Key>
+                    <PropertyRef Name="ServicePortofolioID"/>
+                </Key>
+                <Property Name="ServiceDetails" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="ServiceName" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="ServicePortofolioID" Type="Edm.Int64" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Technologien">
+                <Key>
+                    <PropertyRef Name="TechnologienID"/>
+                </Key>
+                <Property Name="TechnologienElements" Type="Edm.String" Nullable="false" MaxLength="255"/>
+                <Property Name="TechnologienID" Type="Edm.Int64" Nullable="false"/>
+            </EntityType>
+            <Association Name="ServiceDetails_to_ServicePortofolio">
+                <End Type="TechnologyInnovation.ServiceDetails" Multiplicity="1" Role="ServiceDetailsDependent"/>
+                <End Type="TechnologyInnovation.ServicePortofolio" Multiplicity="1" Role="ServicePortofolioPrincipal"/>
+                <ReferentialConstraint>
+                    <Principal Role="ServicePortofolioPrincipal">
+                        <PropertyRef Name="ServiceDetailsID"/>
+                    </Principal>
+                    <Dependent Role="ServiceDetailsDependent">
+                        <PropertyRef Name="ServiceDetailsID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="TechnologyInnovationService" m:IsDefaultEntityContainer="true">
+                <Annotation Term="SQL.TrackChanges" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+                <EntitySet Name="AssetsSet" EntityType="TechnologyInnovation.Assets"/>
+                <EntitySet Name="BeschleunigerSet" EntityType="TechnologyInnovation.Beschleuniger"/>
+                <EntitySet Name="ReferenzenauszugSet" EntityType="TechnologyInnovation.Referenzenauszug"/>
+                <EntitySet Name="ServiceDetailsSet" EntityType="TechnologyInnovation.ServiceDetails"/>
+                <EntitySet Name="ServicePortofolioSet" EntityType="TechnologyInnovation.ServicePortofolio"/>
+                <EntitySet Name="TechnologienSet" EntityType="TechnologyInnovation.Technologien"/>
+                <AssociationSet Name="ServiceDetailsSet_to_ServicePortofolioSet" Association="TechnologyInnovation.ServiceDetails_to_ServicePortofolio">
+                    <End EntitySet="ServiceDetailsSet" Role="ServiceDetailsDependent"/>
+                    <End EntitySet="ServicePortofolioSet" Role="ServicePortofolioPrincipal"/>
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
